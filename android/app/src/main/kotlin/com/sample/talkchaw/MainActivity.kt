@@ -1,4 +1,4 @@
-package com.example.talkchaw
+package com.sample.talkchaw
 
 import io.flutter.embedding.android.FlutterActivity
 
