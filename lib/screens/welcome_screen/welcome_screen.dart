@@ -19,14 +19,14 @@ class WelcomeScreen extends StatelessWidget {
                 child: // Column
                     Column(children: [
                   // Top padding
-                  const SizedBox(height: 80),
+                  const SizedBox(height: 40),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Row(
                       children: [
                         Container(
-                          width: 200,
-                          height: 200,
+                          width: 180,
+                          height: 180,
                           // Set border width, color and radius
                           decoration: const BoxDecoration(
                               image: DecorationImage(
@@ -40,8 +40,8 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                         const Spacer(),
                         Container(
-                          width: 200,
-                          height: 200,
+                          width: 180,
+                          height: 180,
                           // Set border width, color and radius
                           decoration: BoxDecoration(
                               image: const DecorationImage(
@@ -55,15 +55,15 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Row(
                       children: [
                         Container(
-                          width: 200,
-                          height: 200,
+                          width: 180,
+                          height: 180,
                           // Set border width, color and radius
                           decoration: BoxDecoration(
                               image: const DecorationImage(
@@ -75,8 +75,8 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                         const Spacer(),
                         Container(
-                          width: 200,
-                          height: 200,
+                          width: 180,
+                          height: 180,
                           // Set border width, color and radius
                           decoration: const BoxDecoration(
                               image: DecorationImage(
@@ -92,7 +92,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   Expanded(
                       child: Container(
@@ -136,31 +136,33 @@ class WelcomeScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(
-                            height: 40,
+                            height: 20,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const TalkChawText(
-                                text: 'Powered by',
-                                fontWeight: FontWeight.bold,
-                              ),
-                              const SizedBox(
-                                width: 7,
-                              ),
-                              Image.asset(
-                                'assets/images/logo.png',
-                                width: 20,
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              const TalkChawText(
-                                text: 'TalkChaw',
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ],
+                          Flexible(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const TalkChawText(
+                                  text: 'Powered by',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                const SizedBox(
+                                  width: 7,
+                                ),
+                                Image.asset(
+                                  'assets/images/logo.png',
+                                  width: 20,
+                                  height: 20,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                const TalkChawText(
+                                  text: 'TalkChaw',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ],
+                            ),
                           ),
                         ]),
                   ))
