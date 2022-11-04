@@ -16,7 +16,7 @@ class BottomNavigation extends StatefulWidget {
 }
 
 class _BottomNavigationState extends State<BottomNavigation> {
-  int _currentIndex = 0;
+  int _currentIndex = 2;
   final List<Widget> _children = [
     const Connect(),
     const Calls(),
@@ -33,6 +33,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kPrimaryColor,
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

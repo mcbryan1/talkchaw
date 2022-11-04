@@ -124,6 +124,7 @@ class WelcomeScreen extends StatelessWidget {
                             text: 'Connect people arround the world for free',
                             fontSize: 18,
                             textAlign: TextAlign.center,
+                            color: kPrimaryTextColor,
                           ),
                           const SizedBox(
                             height: 50,
@@ -148,6 +149,7 @@ class WelcomeScreen extends StatelessWidget {
                                 const TalkChawText(
                                   text: 'Powered by',
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                                 const SizedBox(
                                   width: 7,
@@ -163,6 +165,7 @@ class WelcomeScreen extends StatelessWidget {
                                 const TalkChawText(
                                   text: 'TalkChaw',
                                   fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
                               ],
                             ),
