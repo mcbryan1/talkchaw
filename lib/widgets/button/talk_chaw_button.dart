@@ -4,7 +4,7 @@ import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 class TalkChawButton extends StatelessWidget {
   final String text;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final double height;
   final Color color;
   final Color textColor;

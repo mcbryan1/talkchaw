@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:talkchaw/screens/major_screens/home.dart';
 import 'package:talkchaw/screens/welcome_screen/welcome_screen.dart';
+import 'package:talkchaw/widgets/theme_provider.dart';
 
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 }
 
@@ -25,13 +30,16 @@ class MyApp extends StatelessWidget {
           ]),
       title: 'Talk Chaw',
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.system,
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
     );
   }
 }
 
-late final GoRouter _router = GoRouter(
+final GoRouter _router = GoRouter(
   initialLocation: '/',
   routes: <GoRoute>[
     GoRoute(
@@ -39,5 +47,19 @@ late final GoRouter _router = GoRouter(
       builder: (BuildContext context, GoRouterState state) =>
           const WelcomeScreen(),
     ),
+    GoRoute(
+      path: '/home',
+      builder: (BuildContext context, GoRouterState state) =>
+          const HomeScreen(),
+    ),
   ],
 );
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
