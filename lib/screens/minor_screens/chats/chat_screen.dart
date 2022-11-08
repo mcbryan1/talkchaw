@@ -32,21 +32,43 @@ class ChatScreen extends StatelessWidget {
                     child: SingleChildScrollView())),
             // Chat input
             Container(
-              padding: const EdgeInsets.all(8),
-              color: kPrimaryDarkColor,
-              height: 110,
-              width: double.infinity,
-              child: TalkChawInputField(
-                height: 110,
-                hintText: 'Search Chats',
-                icon: Icons.search_sharp,
-                iconColor: Theme.of(context).brightness == Brightness.dark
-                    ? Colors.white
-                    : const Color.fromARGB(255, 182, 182, 182),
-                // borderRadius: const BorderRadius.all(Radius.circular(30)),
-                onChanged: (value) {},
-              ),
-            )
+                padding: const EdgeInsets.all(8),
+                color: kPrimaryDarkColor,
+                height: 100,
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: TalkChawInputField(
+                        height: 90,
+                        hintText: 'Type Here',
+                        borderRadius: BorderRadius.circular(50),
+                        iconColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.white
+                                : const Color.fromARGB(255, 182, 182, 182),
+                        // borderRadius: const BorderRadius.all(Radius.circular(30)),
+                        onChanged: (value) {},
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    GestureDetector(
+                      child: Container(
+                        padding: const EdgeInsets.all(15),
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.send,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ))
           ],
         ),
       ),

@@ -82,7 +82,7 @@ class TalkChawInputField extends StatelessWidget {
           hintText: hintText,
           hintStyle: const TextStyle(
               color: kPrimaryTextColor,
-              fontSize: 14,
+              fontSize: 15,
               fontWeight: FontWeight.w300),
           icon: icon != null
               ? Icon(
