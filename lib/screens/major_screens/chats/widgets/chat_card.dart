@@ -11,6 +11,8 @@ class ChatCard extends StatelessWidget {
   bool isGroup;
   bool hasUnreadMessage;
   String? unreadMessageCount;
+  // Messages
+
   ChatCard(
       {Key? key,
       required this.name,

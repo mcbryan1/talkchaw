@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "500037539764",
+    "project_id": "talkchaw-6eeb2",
+    "storage_bucket": "talkchaw-6eeb2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500037539764:android:92a45009bf5d1eb22804e1",
+        "android_client_info": {
+          "package_name": "com.sample.talkchaw"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500037539764-edvuv95a7au7nq88d3a4q0u42rlq2dmc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sample.talkchaw",
+            "certificate_hash": "335547d829f62d2072ce21cb2d91240fe7def3e1"
+          }
+        },
+        {
+          "client_id": "500037539764-2hi8lttf893lpevkrn9vhqg8pkrq3fea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7Pk-oJgNWHHOPrkMVsYAF7Is-RCuLob4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500037539764-2hi8lttf893lpevkrn9vhqg8pkrq3fea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

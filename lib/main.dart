@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -7,8 +8,10 @@ import 'package:talkchaw/screens/major_screens/home.dart';
 import 'package:talkchaw/screens/welcome_screen/welcome_screen.dart';
 import 'package:talkchaw/widgets/theme_provider.dart';
 
-void main() {
+Future<void> main() async {
   HttpOverrides.global = MyHttpOverrides();
+  // Initialize Firebase
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
