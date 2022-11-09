@@ -8,8 +8,9 @@ import 'package:talkchaw/screens/major_screens/home.dart';
 import 'package:talkchaw/screens/welcome_screen/welcome_screen.dart';
 import 'package:talkchaw/widgets/theme_provider.dart';
 
-Future<void> main() async {
+void main() async {
   HttpOverrides.global = MyHttpOverrides();
+  WidgetsFlutterBinding.ensureInitialized();
   // Initialize Firebase
   await Firebase.initializeApp();
   runApp(const MyApp());

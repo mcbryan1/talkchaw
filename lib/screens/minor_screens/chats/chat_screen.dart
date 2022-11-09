@@ -4,14 +4,17 @@ import 'package:talkchaw/widgets/appbar/chat_appbar.dart';
 import 'package:talkchaw/widgets/input/talk_chaw_input.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  final Map<String, dynamic> chat;
+  const ChatScreen({Key? key, required this.chat}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPrimaryDarkColor,
       appBar: ChatAppbar(
-        title: 'Chat',
+        title: chat['name'],
+        avatar: chat['avatar'],
+        isOnline: chat['isOnline'],
       ),
       // Chat screen
       body: Padding(

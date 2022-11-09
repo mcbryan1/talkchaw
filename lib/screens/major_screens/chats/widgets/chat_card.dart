@@ -1,36 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:talkchaw/screens/minor_screens/chats/chat_screen.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 class ChatCard extends StatelessWidget {
-  String name;
-  String lastMessage;
-  String time;
-  String avatar;
-  bool isOnline;
-  bool isGroup;
-  bool hasUnreadMessage;
-  String? unreadMessageCount;
+  final Map<String, dynamic> chat;
   // Messages
 
-  ChatCard(
-      {Key? key,
-      required this.name,
-      required this.lastMessage,
-      required this.time,
-      required this.avatar,
-      required this.isOnline,
-      required this.isGroup,
-      required this.hasUnreadMessage,
-      this.unreadMessageCount})
-      : super(key: key);
+  ChatCard({
+    Key? key,
+    required this.chat,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final Timestamp timestamp = chat['lastMessageTime'] as Timestamp;
+    final DateTime dateTime = timestamp.toDate();
+    // Convert dateTime to 24 hour format
+    final String time = dateTime.hour > 12
+        ? '${dateTime.hour - 12}:${dateTime.minute} PM'
+        : '${dateTime.hour}:${dateTime.minute} AM';
     return GestureDetector(
       onTap: () {
         // Navigate to Chat Screen
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ChatScreen()));
+            context,
+            MaterialPageRoute(
+                builder: (context) => ChatScreen(
+                      chat: chat,
+                    )));
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 5),
@@ -56,10 +53,10 @@ class ChatCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
               ),
               child: CircleAvatar(
-                backgroundImage: NetworkImage(avatar),
+                backgroundImage: NetworkImage(chat['avatar']),
               ),
             ),
-            isGroup
+            chat['isGroup']
                 ? Container(
                     height: 10,
                     width: 10,
@@ -84,7 +81,9 @@ class ChatCard extends StatelessWidget {
                       height: 10,
                       width: 10,
                       decoration: BoxDecoration(
-                        color: isOnline ? Colors.green : Colors.transparent,
+                        color: chat['isOnline']
+                            ? Colors.green
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(50),
                       ),
                     ),
@@ -100,7 +99,7 @@ class ChatCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TalkChawText(
-                    text: name,
+                    text: chat['name'],
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
                   ),
@@ -108,7 +107,7 @@ class ChatCard extends StatelessWidget {
                     height: 5,
                   ),
                   TalkChawText(
-                    text: lastMessage,
+                    text: chat['lastMessage'],
                     fontSize: 13,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -121,13 +120,15 @@ class ChatCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TalkChawText(
-                    text: time,
-                    fontSize: 13,
-                    color: const Color.fromARGB(255, 150, 150, 150)),
+                  // Convert dateTime to 24hours format
+                  text: time,
+                  fontSize: 13,
+                  color: const Color.fromARGB(255, 150, 150, 150),
+                ),
                 const SizedBox(
                   height: 5,
                 ),
-                hasUnreadMessage
+                chat['unreadMessages'] > 0
                     ? Container(
                         height: 25,
                         width: 25,
@@ -137,7 +138,7 @@ class ChatCard extends StatelessWidget {
                         ),
                         child: Center(
                             child: TalkChawText(
-                          text: unreadMessageCount!,
+                          text: chat['unreadMessages'].toString(),
                           color: Colors.white,
                         )))
                     : const SizedBox(),

@@ -6,8 +6,11 @@ import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 class ChatAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
+  final String? avatar;
+  final bool? isOnline;
 
-  const ChatAppbar({Key? key, this.title}) : super(key: key);
+  const ChatAppbar({Key? key, this.title, this.avatar, this.isOnline})
+      : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -36,38 +39,50 @@ class ChatAppbar extends StatelessWidget implements PreferredSizeWidget {
                   ),
         title: Row(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 20,
-              backgroundImage: AssetImage('assets/images/man1.png'),
+              backgroundImage: NetworkImage(avatar!),
             ),
             // Green container showing online at bottom right
-            Container(
-              width: 10,
-              height: 10,
-              decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(50)),
-            ),
+            isOnline == true
+                ? Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(50)),
+                  )
+                : Container(),
             const SizedBox(
               width: 20,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TalkChawText(
-                  text: title!,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.white
-                      : kPrimaryTextColor,
-                ),
-                const TalkChawText(
-                  text: 'Active now',
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                ),
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TalkChawText(
+                    text: title!,
+                    fontSize: 20,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : kPrimaryTextColor,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  isOnline == true
+                      ? const TalkChawText(
+                          text: 'Online',
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 10,
+                        )
+                      : const SizedBox(),
+                ],
+              ),
             ),
           ],
         ),
