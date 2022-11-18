@@ -23,16 +23,51 @@ class ChatScreen extends StatelessWidget {
           children: [
             Expanded(
                 child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30)),
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? const Color.fromARGB(255, 40, 40, 40)
-                          : kBackgroundColor,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(30),
+                    bottomRight: Radius.circular(30)),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? const Color.fromARGB(255, 40, 40, 40)
+                    : kBackgroundColor,
+              ),
+              child: // Map through messages and display chats
+                  ListView.builder(
+                itemCount: 2,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: chat['messages'][index]['isSender']
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          constraints:
+                              const BoxConstraints(maxWidth: 250, minWidth: 50),
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: chat['messages'][index]['isSender']
+                                ? kPrimaryColor
+                                : Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? const Color.fromARGB(255, 40, 40, 40)
+                                    : kBackgroundColor,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            chat['messages'][index]['message'],
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 16),
+                          ),
+                        ),
+                      ],
                     ),
-                    child: SingleChildScrollView())),
+                  );
+                },
+              ),
+            )),
             // Chat input
             Container(
                 padding: const EdgeInsets.all(8),
