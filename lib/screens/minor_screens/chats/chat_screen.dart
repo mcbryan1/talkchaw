@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talkchaw/constants.dart';
+import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/widgets/appbar/chat_appbar.dart';
 import 'package:talkchaw/widgets/input/talk_chaw_input.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
-import 'package:talkchaw/constants.dart';
+import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 class ChatAppbar extends StatelessWidget implements PreferredSizeWidget {

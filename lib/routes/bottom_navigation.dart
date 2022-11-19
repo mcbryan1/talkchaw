@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:talkchaw/constants.dart';
+import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/screens/major_screens/calls/calls.dart';
 import 'package:talkchaw/screens/major_screens/chats/chats.dart';
 import 'package:talkchaw/screens/major_screens/connect/connect.dart';

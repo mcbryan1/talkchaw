@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talkchaw/constants.dart';
+import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 class TalkChawButton extends StatelessWidget {
@@ -9,6 +9,8 @@ class TalkChawButton extends StatelessWidget {
   final Color color;
   final Color textColor;
   final InteractiveInkFeatureFactory? factory;
+  // Border Radius
+  final double? borderRadius;
 
   const TalkChawButton(
       {Key? key,
@@ -17,7 +19,8 @@ class TalkChawButton extends StatelessWidget {
       this.height = 60,
       this.factory,
       this.color = kPrimaryColor,
-      this.textColor = Colors.white})
+      this.textColor = Colors.white,
+      this.borderRadius = 30})
       : super(key: key);
 
   @override
@@ -32,7 +35,7 @@ class TalkChawButton extends StatelessWidget {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(height / 2),
+                  borderRadius: BorderRadius.circular(borderRadius!),
                   side: const BorderSide(color: kPrimaryColor))),
           splashFactory: factory,
           // Add Shadow

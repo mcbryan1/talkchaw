@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:talkchaw/constants.dart';
+import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/screens/major_screens/chats/widgets/chat_card.dart';
 import 'package:talkchaw/widgets/appbar/talk_chaw_appbar.dart';
 import 'package:talkchaw/widgets/input/talk_chaw_input.dart';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:talkchaw/constants.dart';
+import 'package:talkchaw/constant.dart';
+import 'package:talkchaw/screens/major_screens/auth/login.dart';
 import 'package:talkchaw/widgets/button/talk_chaw_button.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
@@ -134,7 +135,7 @@ class WelcomeScreen extends StatelessWidget {
                             child: TalkChawButton(
                               text: 'Get Started',
                               onPressed: () {
-                                GoRouter.of(context).push('/home');
+                                nextScreen(context, const Login());
                               },
                               height: 80,
                             ),
