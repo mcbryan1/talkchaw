@@ -1,7 +1,10 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:talkchaw/constant.dart';
+import 'package:talkchaw/screens/major_screens/auth/signup.dart';
 import 'package:talkchaw/widgets/button/talk_chaw_button.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
@@ -59,7 +62,7 @@ class _LoginState extends State<Login> {
             ),
             const TalkChawText(
               text: 'Login now to connect to the world',
-              fontSize: 20,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
             const SizedBox(
@@ -135,15 +138,36 @@ class _LoginState extends State<Login> {
                       borderRadius: 5,
                       text: 'Login',
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          print('Validated');
-                        }
+                        login();
                       }),
 
                   const SizedBox(
                     height: 20,
                   ),
-                  // Register Button
+
+                  Text.rich(
+                    TextSpan(
+                      text: 'Don\'t have an account? ',
+                      style: GoogleFonts.quicksand(
+                        fontSize: 16,
+                        color: kPrimaryTextColor,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Sign Up',
+                          style: GoogleFonts.quicksand(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: kPrimaryColor,
+                              decoration: TextDecoration.underline),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              nextScreen(context, const Signup());
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -151,5 +175,12 @@ class _LoginState extends State<Login> {
         ),
       ),
     ));
+  }
+
+  // Login
+  void login() {
+    if (formKey.currentState!.validate()) {
+      debugPrint('Validated');
+    }
   }
 }

@@ -23,7 +23,7 @@ void nextScreenReplace(context, screen) {
 
 const textInputDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: kPrimaryDarkColor, width: 4.0),
+    borderSide: BorderSide(color: kPrimaryDarkColor, width: 2.0),
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: kPrimaryColor, width: 2.0),
