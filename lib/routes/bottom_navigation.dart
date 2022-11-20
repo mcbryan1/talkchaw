@@ -6,7 +6,7 @@ import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/screens/major_screens/calls/calls.dart';
 import 'package:talkchaw/screens/major_screens/chats/chats.dart';
 import 'package:talkchaw/screens/major_screens/connect/connect.dart';
-import 'package:talkchaw/screens/major_screens/settings/settings.dart';
+import 'package:talkchaw/screens/major_screens/profile/profile.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     const Connect(),
     const Calls(),
     const Chats(),
-    const Settings()
+    const Profile()
   ];
 
   void _onItemTapped(int index) {

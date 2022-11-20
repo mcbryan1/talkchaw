@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 const kPrimaryColor = Color(0xFF713ffe);
 const kPrimaryTextColor = Color(0xFF4e4f4e);
@@ -32,3 +33,26 @@ const textInputDecoration = InputDecoration(
     borderSide: BorderSide(color: Colors.red, width: 2.0),
   ),
 );
+
+// Snackbar
+
+void showSnackbar(context, color, message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: color,
+      content: TalkChawText(
+        text: message,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+      duration: const Duration(seconds: 3),
+      action: SnackBarAction(
+        label: 'Okay',
+        textColor: Colors.white,
+        onPressed: () {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        },
+      ),
+    ),
+  );
+}

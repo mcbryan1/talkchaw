@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:responsive_framework/responsive_framework.dart';
+import 'package:talkchaw/helpers/helper.dart';
 import 'package:talkchaw/screens/major_screens/home.dart';
 import 'package:talkchaw/screens/welcome_screen/welcome_screen.dart';
 import 'package:talkchaw/widgets/theme_provider.dart';
@@ -16,13 +17,36 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  bool isLogin = false;
   // This widget is the root of your application.
+
+  @override
+  void initState() {
+    super.initState();
+    getIsLoggedIn();
+  }
+
+  getIsLoggedIn() async {
+    await HelperFunctions.getUserLoggedInSharedPreference().then((value) {
+      if (value != null) {
+        setState(() {
+          isLogin = value;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       builder: (context, child) => ResponsiveWrapper.builder(child,
           maxWidth: 1000,
           minWidth: 430,
@@ -37,27 +61,10 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: MyThemes.lightTheme,
       darkTheme: MyThemes.darkTheme,
-      routeInformationParser: _router.routeInformationParser,
-      routerDelegate: _router.routerDelegate,
+      home: isLogin ? const HomeScreen() : const WelcomeScreen(),
     );
   }
 }
-
-final GoRouter _router = GoRouter(
-  initialLocation: '/',
-  routes: <GoRoute>[
-    GoRoute(
-      path: '/',
-      builder: (BuildContext context, GoRouterState state) =>
-          const WelcomeScreen(),
-    ),
-    GoRoute(
-      path: '/home',
-      builder: (BuildContext context, GoRouterState state) =>
-          const HomeScreen(),
-    ),
-  ],
-);
 
 class MyHttpOverrides extends HttpOverrides {
   @override

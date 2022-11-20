@@ -1,11 +1,14 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, use_build_context_synchronously
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talkchaw/constant.dart';
+import 'package:talkchaw/helpers/helper.dart';
 import 'package:talkchaw/screens/major_screens/auth/login.dart';
-import 'package:talkchaw/screens/major_screens/auth/signup.dart';
+import 'package:talkchaw/screens/major_screens/home.dart';
+import 'package:talkchaw/services/auth_service.dart';
+import 'package:talkchaw/widgets/button/loading_button.dart';
 import 'package:talkchaw/widgets/button/talk_chaw_button.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
@@ -30,6 +33,10 @@ class _SignupState extends State<Signup> {
   String password = '';
   // Confirm Password
   String confirmPassword = '';
+  // isLoading
+  bool isLoading = false;
+  // Auth Service
+  AuthService authService = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -222,12 +229,14 @@ class _SignupState extends State<Signup> {
                     height: 30,
                   ),
                   // Signup Button
-                  TalkChawButton(
-                      borderRadius: 5,
-                      text: 'Signup',
-                      onPressed: () {
-                        register();
-                      }),
+                  isLoading
+                      ? const LoadingButton()
+                      : TalkChawButton(
+                          borderRadius: 5,
+                          text: 'Signup',
+                          onPressed: () {
+                            register();
+                          }),
 
                   const SizedBox(
                     height: 20,
@@ -266,9 +275,35 @@ class _SignupState extends State<Signup> {
   }
 
   // Signup
-  void register() {
+  void register() async {
     if (formKey.currentState!.validate()) {
-      debugPrint('Validated');
+      setState(() {
+        isLoading = true;
+      });
+
+      await authService
+          .signUp(
+              firstName: firstName,
+              lastName: lastName,
+              email: email,
+              password: password)
+          .then((value) async {
+        if (value == true) {
+          // Save info in shared preferences
+          await HelperFunctions.saveUserLoggedIn(true);
+          await HelperFunctions.saveUserEmail(email);
+          await HelperFunctions.saveUserFirstName(firstName);
+          await HelperFunctions.saveUserLastName(lastName);
+
+          // Navigate to home screen
+          nextScreenReplace(context, const HomeScreen());
+        } else {
+          showSnackbar(context, Colors.red, value);
+          setState(() {
+            isLoading = false;
+          });
+        }
+      });
     }
   }
 }
