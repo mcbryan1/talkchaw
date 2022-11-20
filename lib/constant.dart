@@ -45,7 +45,7 @@ void showSnackbar(context, color, message) {
         color: Colors.white,
         fontWeight: FontWeight.bold,
       ),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 5),
       action: SnackBarAction(
         label: 'Okay',
         textColor: Colors.white,

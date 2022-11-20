@@ -1,6 +1,5 @@
 // Create a signin function that picks name, phone number and image and upload to firebase
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:talkchaw/helpers/helper.dart';
@@ -10,6 +9,23 @@ class AuthService {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   // Login
+  Future logIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      UserCredential userCredential = await firebaseAuth
+          .signInWithEmailAndPassword(email: email, password: password);
+      User? user = userCredential.user;
+      if (user != null) {
+        return true;
+      }
+    } on FirebaseAuthException catch (error) {
+      return error.message;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   // Sign Up
 
@@ -27,12 +43,12 @@ class AuthService {
         // Call our database service to update the user data
 
         await DatabaseService(uid: user.uid)
-            .updateUserData(firstName, lastName, email);
+            .saveUserData(firstName, lastName, email);
 
         return true;
       }
     } on FirebaseAuthException catch (error) {
-      return error.code;
+      return error.message;
       // if (e.code == 'weak-password') {
       //   print('The password provided is too weak.');
       //   return e.code;
