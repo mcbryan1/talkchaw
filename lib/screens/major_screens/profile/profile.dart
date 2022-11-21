@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
+import 'package:talkchaw/screens/major_screens/home.dart';
+import 'package:talkchaw/screens/welcome_screen/welcome_screen.dart';
 import 'package:talkchaw/services/auth_service.dart';
 import 'package:talkchaw/widgets/appbar/talk_chaw_appbar.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
@@ -43,6 +45,7 @@ class _ProfileState extends State<Profile> {
                 ElevatedButton(
                   onPressed: () {
                     authService.signOut();
+                    nextScreen(context, WelcomeScreen());
                   },
                   child: const Text('Sign Out'),
                 ),
