@@ -297,6 +297,8 @@ class _SignupState extends State<Signup> {
 
           // Navigate to home screen
           nextScreenReplace(context, const HomeScreen());
+          showSnackbarWithoutAction(context, Colors.green,
+              'Registration Successful, Welcome $firstName');
         } else {
           showSnackbar(context, Colors.red, value);
           setState(() {

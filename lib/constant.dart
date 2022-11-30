@@ -56,3 +56,18 @@ void showSnackbar(context, color, message) {
     ),
   );
 }
+
+void showSnackbarWithoutAction(context, color, message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: color,
+      content: TalkChawText(
+        text: message,
+        color: Colors.white,
+      ),
+      duration: const Duration(seconds: 5),
+    ),
+  );
+}
+// Loading
+

@@ -49,8 +49,8 @@ class _LoginState extends State<Login> {
             ),
             // Logo
             Container(
-              height: 50,
-              width: 50,
+              height: 55,
+              width: 55,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/images/logo.png'),
@@ -214,6 +214,8 @@ class _LoginState extends State<Login> {
               snapshot.docs[0].get('lastName'));
           // Navigate to home screen
           nextScreenReplace(context, const HomeScreen());
+          showSnackbarWithoutAction(context, Colors.green,
+              'Welcome Back ${snapshot.docs[0].get('firstName')}');
         } else {
           showSnackbar(context, Colors.red, value);
           setState(() {
