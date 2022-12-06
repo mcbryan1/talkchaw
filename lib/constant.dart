@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
-const kPrimaryColor = Color(0xFF713ffe);
+const kPrimaryColor = Color.fromARGB(255, 0, 160, 172);
 const kPrimaryTextColor = Color(0xFF4e4f4e);
 const kSecondaryTextColor = Color(0xFFc9c8c8);
-const kPrimaryDarkColor = Color(0xFF0b0056);
+const kPrimaryDarkColor = Color(0xFF00666D);
 const kBackgroundColor = Color(0xFFfafafa);
 const kAppBgColorDark = Colors.black;
 const kAppBgColorLight = Colors.white;
@@ -24,13 +24,13 @@ void nextScreenReplace(context, screen) {
 
 const textInputDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: kPrimaryDarkColor, width: 2.0),
+    borderSide: BorderSide(color: kPrimaryTextColor, width: 1.0),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: kPrimaryColor, width: 2.0),
+    borderSide: BorderSide(color: kPrimaryColor, width: 1.0),
   ),
   errorBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.red, width: 2.0),
+    borderSide: BorderSide(color: Colors.red, width: 1.0),
   ),
 );
 
@@ -43,7 +43,7 @@ void showSnackbar(context, color, message) {
       content: TalkChawText(
         text: message,
         color: Colors.white,
-        fontWeight: FontWeight.bold,
+        fontWeight: FontWeight.w300,
       ),
       duration: const Duration(seconds: 5),
       action: SnackBarAction(

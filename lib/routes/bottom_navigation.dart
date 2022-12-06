@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/screens/major_screens/calls/calls.dart';
 import 'package:talkchaw/screens/major_screens/chats/chats.dart';
-import 'package:talkchaw/screens/major_screens/connect/connect.dart';
+import 'package:talkchaw/screens/major_screens/groups/groups.dart';
 import 'package:talkchaw/screens/major_screens/profile/profile.dart';
 
 class BottomNavigation extends StatefulWidget {
@@ -18,7 +18,7 @@ class BottomNavigation extends StatefulWidget {
 class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex = 2;
   final List<Widget> _children = [
-    const Connect(),
+    const Groups(),
     const Calls(),
     const Chats(),
     const Profile()
@@ -37,6 +37,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
       backgroundColor: kPrimaryColor,
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        enableFeedback: false,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         elevation: 0.0,
         iconSize: 30,
         // Check the theme of the app
@@ -66,10 +69,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 borderRadius: const BorderRadius.all(Radius.circular(30)),
               ),
               child: Icon(
-                Icons.public,
-                color: _currentIndex == 0
-                    ? Colors.white
-                    : const Color.fromARGB(255, 97, 93, 93),
+                Icons.people,
+                color:
+                    _currentIndex == 0 ? Colors.white : const Color(0xFF9B9A9A),
               ),
             ),
             label: '',
@@ -87,7 +89,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                   // Change colors based on index
                   color: _currentIndex == 1
                       ? Colors.white
-                      : const Color.fromARGB(255, 97, 93, 93)),
+                      : const Color(0xFF9B9A9A)),
             ),
             label: '',
           ),
@@ -103,7 +105,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
               child: Icon(Icons.message_rounded,
                   color: _currentIndex == 2
                       ? Colors.white
-                      : const Color.fromARGB(255, 97, 93, 93)),
+                      : const Color(0xFF9B9A9A)),
             ),
             label: '',
           ),
@@ -116,9 +118,8 @@ class _BottomNavigationState extends State<BottomNavigation> {
               ),
               child: Icon(
                 Icons.settings,
-                color: _currentIndex == 3
-                    ? Colors.white
-                    : const Color.fromARGB(255, 97, 93, 93),
+                color:
+                    _currentIndex == 3 ? Colors.white : const Color(0xFF9B9A9A),
               ),
             ),
             label: '',

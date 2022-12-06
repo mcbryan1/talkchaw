@@ -4,8 +4,11 @@ import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
 class TalkChawAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  // Actions
+  final List<Widget>? actions;
 
-  const TalkChawAppbar({Key? key, required this.title}) : super(key: key);
+  const TalkChawAppbar({Key? key, required this.title, this.actions})
+      : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -30,6 +33,7 @@ class TalkChawAppbar extends StatelessWidget implements PreferredSizeWidget {
             : kBackgroundColor,
         elevation: 0.0,
         // centerTitle: true,
+        actions: actions,
       ),
     );
   }
