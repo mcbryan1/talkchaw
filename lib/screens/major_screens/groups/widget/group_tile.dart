@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
+import 'package:talkchaw/screens/minor_screens/chats/group_chat_screen.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
+import 'package:intl/intl.dart';
 
 class GroupTile extends StatelessWidget {
   final String groupName;
@@ -8,6 +10,7 @@ class GroupTile extends StatelessWidget {
   final String groupId;
   final String firstName;
   final String lastName;
+  final String createdAt;
 
   const GroupTile({
     Key? key,
@@ -16,11 +19,27 @@ class GroupTile extends StatelessWidget {
     required this.groupId,
     required this.firstName,
     required this.lastName,
+    required this.createdAt,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Format Date and time from createdAt
+    final DateTime dateTime = DateTime.parse(createdAt);
+    final DateFormat dateFormat = DateFormat('dd MMMM, yyyy');
+    final String formattedDate = dateFormat.format(dateTime);
     return GestureDetector(
+      onTap: () {
+        nextScreen(
+            context,
+            GroupChatScreen(
+                groupName: groupName,
+                groupDescription: groupDescription,
+                groupId: groupId,
+                firstName: firstName,
+                lastName: lastName,
+                createdAt: createdAt));
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         child: Container(
@@ -50,7 +69,7 @@ class GroupTile extends StatelessWidget {
                     color: Colors.white,
                   )),
               const SizedBox(
-                width: 10,
+                width: 14,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +83,7 @@ class GroupTile extends StatelessWidget {
                     height: 10,
                   ),
                   TalkChawText(
-                    text: "Admin: $firstName $lastName",
+                    text: "Created on $formattedDate",
                     fontSize: 13,
                     color: Colors.grey,
                   ),

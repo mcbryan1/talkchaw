@@ -29,6 +29,8 @@ class _GroupsState extends State<Groups> {
   Stream? groups;
   String groupName = "";
   String groupDescription = "";
+  // Created At
+  String createdAt = "";
   bool isLoading = false;
   final formKey = GlobalKey<FormState>();
 
@@ -73,6 +75,13 @@ class _GroupsState extends State<Groups> {
 
   String getDescription(String response) {
     return response.substring(response.indexOf("-") + 1);
+  }
+
+  String getCreatedAt(String response) {
+    // Get response after _ and - and before /
+    return response.substring(
+      response.indexOf("/") + 1,
+    );
   }
 
   @override
@@ -157,11 +166,17 @@ class _GroupsState extends State<Groups> {
               return ListView.builder(
                   itemCount: snapshot.data['groups'].length,
                   itemBuilder: ((context, index) {
+                    // Reverse index
+                    int reverseIndex =
+                        snapshot.data['groups'].length - index - 1;
                     return GroupTile(
-                        groupName: getName(snapshot.data['groups'][index]),
-                        groupDescription:
-                            getDescription(snapshot.data['groups'][index]),
-                        groupId: getId(snapshot.data['groups'][index]),
+                        groupName:
+                            getName(snapshot.data['groups'][reverseIndex]),
+                        groupDescription: getDescription(
+                            snapshot.data['groups'][reverseIndex]),
+                        groupId: getId(snapshot.data['groups'][reverseIndex]),
+                        createdAt:
+                            getCreatedAt(snapshot.data['groups'][reverseIndex]),
                         firstName: snapshot.data['firstName'],
                         lastName: snapshot.data['lastName']);
                   }));
@@ -262,6 +277,7 @@ class _GroupsState extends State<Groups> {
                                           lastName,
                                           FirebaseAuth
                                               .instance.currentUser!.uid,
+                                          DateTime.now(),
                                         )
                                         .whenComplete(() => {
                                               setState(() {
