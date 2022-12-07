@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
-import 'package:talkchaw/screens/minor_screens/chats/group_chat_screen.dart';
+import 'package:talkchaw/screens/minor_screens/groups/group_chat_screen.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 import 'package:intl/intl.dart';
 

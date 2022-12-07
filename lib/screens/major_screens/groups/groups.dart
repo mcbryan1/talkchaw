@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/helpers/helper.dart';
 import 'package:talkchaw/screens/major_screens/groups/widget/group_tile.dart';
+import 'package:talkchaw/screens/minor_screens/groups/group_search_screen.dart';
 import 'package:talkchaw/services/auth_service.dart';
 import 'package:talkchaw/services/database_service.dart';
 import 'package:talkchaw/widgets/appbar/talk_chaw_appbar.dart';
@@ -88,16 +89,20 @@ class _GroupsState extends State<Groups> {
   Widget build(BuildContext context) {
     // Get size of screen
     return Scaffold(
-      appBar: const TalkChawAppbar(
+      appBar: TalkChawAppbar(
         title: 'Groups',
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 8.0),
-            child: Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-          ),
+              padding: const EdgeInsets.only(right: 8.0),
+              child: GestureDetector(
+                onTap: () {
+                  nextScreen(context, const GroupSearchScreen());
+                },
+                child: Image.asset(
+                  'assets/images/search.png',
+                  // height: 20,
+                ),
+              )),
         ],
       ),
       backgroundColor: kPrimaryDarkColor,
