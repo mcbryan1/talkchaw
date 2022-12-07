@@ -1,11 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/helpers/helper.dart';
 import 'package:talkchaw/screens/major_screens/groups/widget/group_tile.dart';
+import 'package:talkchaw/screens/minor_screens/groups/all_groups_screen.dart';
 import 'package:talkchaw/screens/minor_screens/groups/group_search_screen.dart';
 import 'package:talkchaw/services/auth_service.dart';
 import 'package:talkchaw/services/database_service.dart';
@@ -92,17 +92,74 @@ class _GroupsState extends State<Groups> {
       appBar: TalkChawAppbar(
         title: 'Groups',
         actions: [
-          Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: GestureDetector(
-                onTap: () {
-                  nextScreen(context, const GroupSearchScreen());
-                },
-                child: Image.asset(
-                  'assets/images/search.png',
-                  // height: 20,
+          // Display Popup menu
+          PopupMenuButton(
+            icon: Icon(Icons.more_vert,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : kPrimaryDarkColor),
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const GroupSearchScreen(),
+                        ),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.search,
+                          // Color based on Theme
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : kPrimaryDarkColor,
+                        ),
+                        const SizedBox(width: 8),
+                        TalkChawText(
+                          text: 'Search Groups',
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : kPrimaryDarkColor,
+                        )
+                      ],
+                    )),
+              ),
+              // All Groups Screen
+              PopupMenuItem(
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const AllGroupsScreen(),
+                        ));
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.group,
+                        // Color based on Theme
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : kPrimaryDarkColor,
+                      ),
+                      const SizedBox(width: 8),
+                      TalkChawText(
+                        text: 'All Groups',
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : kPrimaryDarkColor,
+                      )
+                    ],
+                  ),
                 ),
-              )),
+              ),
+            ],
+          ),
         ],
       ),
       backgroundColor: kPrimaryDarkColor,
