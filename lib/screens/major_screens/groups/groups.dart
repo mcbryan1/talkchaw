@@ -74,7 +74,7 @@ class _GroupsState extends State<Groups> {
   }
 
   String getDescription(String response) {
-    return response.substring(response.indexOf("-") + 1);
+    return response.substring(response.indexOf("-") + 1, response.indexOf("/"));
   }
 
   String getCreatedAt(String response) {
