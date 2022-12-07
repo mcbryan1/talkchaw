@@ -133,6 +133,7 @@ class WelcomeScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 15),
                             child: TalkChawButton(
+                              borderRadius: 5,
                               text: 'Get Started',
                               onPressed: () {
                                 nextScreen(context, const Login());

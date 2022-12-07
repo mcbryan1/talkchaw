@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/helpers/helper.dart';
@@ -167,8 +169,10 @@ class _ProfileState extends State<Profile> {
             ),
             TextButton(
               onPressed: () async {
-                await authService.signOut().whenComplete(
-                    () => {nextScreenReplace(context, const Login())});
+                await authService.signOut();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => const Login()),
+                    (Route<dynamic> route) => false);
               },
               child: const TalkChawText(
                 text: 'Logout',
