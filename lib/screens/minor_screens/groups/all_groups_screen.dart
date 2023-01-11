@@ -11,7 +11,7 @@ class AllGroupsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CollectionReference _groups =
+    final CollectionReference groups =
         FirebaseFirestore.instance.collection('groups');
 
     return Scaffold(
@@ -49,7 +49,7 @@ class AllGroupsScreen extends StatelessWidget {
               : kBackgroundColor,
         ),
         child: StreamBuilder(
-          stream: _groups.snapshots(),
+          stream: groups.snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {

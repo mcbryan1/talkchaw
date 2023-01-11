@@ -63,7 +63,9 @@ class GroupTile extends StatelessWidget {
                   ),
                   alignment: Alignment.center,
                   child: TalkChawText(
-                    text: groupName[0].toUpperCase(),
+                    text: groupName.split(' ').length > 1
+                        ? '${groupName.split(' ')[0][0].toUpperCase()}${groupName.split(' ')[1][0].toUpperCase()}'
+                        : groupName.split(' ')[0][0].toUpperCase(),
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: Colors.white,

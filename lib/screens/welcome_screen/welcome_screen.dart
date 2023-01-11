@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/screens/major_screens/auth/login.dart';
 import 'package:talkchaw/widgets/button/talk_chaw_button.dart';

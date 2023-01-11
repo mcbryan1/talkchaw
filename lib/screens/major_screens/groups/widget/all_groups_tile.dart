@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talkchaw/constant.dart';
-import 'package:talkchaw/screens/minor_screens/groups/group_chat_screen.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
-import 'package:intl/intl.dart';
 
 class AllGroupsTile extends StatelessWidget {
   final String groupName;
@@ -62,7 +60,9 @@ class AllGroupsTile extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: TalkChawText(
-                        text: groupName[0].toUpperCase(),
+                        text: groupName.split(' ').length > 1
+                            ? '${groupName.split(' ')[0][0].toUpperCase()}${groupName.split(' ')[1][0].toUpperCase()}'
+                            : groupName.split(' ')[0][0].toUpperCase(),
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                         color: Colors.white,

@@ -95,7 +95,7 @@ class ChatScreen extends StatelessWidget {
                     GestureDetector(
                       child: Container(
                         padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: kPrimaryColor,
                           shape: BoxShape.circle,
                         ),

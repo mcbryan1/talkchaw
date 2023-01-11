@@ -5,7 +5,6 @@ import 'package:talkchaw/constant.dart';
 import 'package:talkchaw/helpers/helper.dart';
 import 'package:talkchaw/screens/major_screens/auth/login.dart';
 import 'package:talkchaw/screens/major_screens/profile/components/profile_info.dart';
-import 'package:talkchaw/screens/welcome_screen/welcome_screen.dart';
 import 'package:talkchaw/services/auth_service.dart';
 import 'package:talkchaw/widgets/appbar/talk_chaw_appbar.dart';
 import 'package:talkchaw/widgets/line/line.dart';

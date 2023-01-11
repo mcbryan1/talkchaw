@@ -62,12 +62,14 @@ class ChatBubble extends StatelessWidget {
                     ? const Color.fromARGB(255, 255, 255, 255)
                     : const Color.fromARGB(255, 255, 255, 255),
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                  bottomLeft:
-                      isSender! ? Radius.circular(30) : Radius.circular(0),
-                  bottomRight:
-                      isSender! ? Radius.circular(0) : Radius.circular(30),
+                  topLeft: const Radius.circular(30),
+                  topRight: const Radius.circular(30),
+                  bottomLeft: isSender!
+                      ? const Radius.circular(30)
+                      : const Radius.circular(0),
+                  bottomRight: isSender!
+                      ? const Radius.circular(0)
+                      : const Radius.circular(30),
                 ),
               ),
               child: Column(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talkchaw/widgets/text/talk_chaw_text.dart';
 
-const kPrimaryColor = Color.fromARGB(255, 0, 160, 172);
+const kPrimaryColor = Color(0xFF00A0AC);
 const kPrimaryTextColor = Color(0xFF4e4f4e);
 const kSecondaryTextColor = Color(0xFFc9c8c8);
 const kPrimaryDarkColor = Color(0xFF00666D);
@@ -20,8 +20,15 @@ void nextScreenReplace(context, screen) {
       context, MaterialPageRoute(builder: (context) => screen));
 }
 
-// Input Decoration
+// Next Screen Remove previous screen
+void nextScreenRemovePrevious(context, screen) {
+  Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => screen),
+      (Route<dynamic> route) => false);
+}
 
+// Input Decoration
 const textInputDecoration = InputDecoration(
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(color: kPrimaryTextColor, width: 1.0),

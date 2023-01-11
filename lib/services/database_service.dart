@@ -10,8 +10,13 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection('users');
 
-  final CollectionReference groupsCOlllection =
+  final CollectionReference groupsCollection =
       FirebaseFirestore.instance.collection('groups');
+
+  final CollectionReference chatsCollection =
+      FirebaseFirestore.instance.collection('chats');
+
+  // Create a chat
 
   // Save the Userdata
   Future saveUserData(
@@ -48,7 +53,7 @@ class DatabaseService {
   // Create a group
   Future createGroup(String groupName, String groupDescription,
       String firstName, String lastName, String id, DateTime createdAt) async {
-    DocumentReference groupDocumentReference = await groupsCOlllection.add({
+    DocumentReference groupDocumentReference = await groupsCollection.add({
       'groupName': groupName,
       'groupDescription': groupDescription,
       'groupIcon': "",
@@ -58,7 +63,6 @@ class DatabaseService {
       'recentMessage': "",
       'recentMessageSender': "",
       'recentMessageTime': "",
-      // Time group Was created
       'createdAt': createdAt,
     });
     // Uodate the members
@@ -74,5 +78,21 @@ class DatabaseService {
         "${groupDocumentReference.id}_${groupName}-${groupDescription}/${createdAt}"
       ]),
     });
+  }
+
+  // Getting the chats
+  getChats(String groupId) async {
+    return groupsCollection
+        .doc(groupId)
+        .collection("messages")
+        .orderBy("time", descending: true)
+        .snapshots();
+  }
+
+  // Get group admin
+  Future getGroupAdmin(String groupId) async {
+    DocumentReference adminDocumentReference = groupsCollection.doc(groupId);
+    DocumentSnapshot adminDocumentSnapshot = await adminDocumentReference.get();
+    return adminDocumentSnapshot['admin'];
   }
 }

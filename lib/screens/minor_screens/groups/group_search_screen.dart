@@ -7,11 +7,9 @@ class GroupSearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Group Search Screen"),
+        title: const Text("Group Search Screen"),
       ),
-      body: Container(
-        child: Center(child: Text("Group Search Screen")),
-      ),
+      body: const Center(child: Text("Group Search Screen")),
     );
   }
 }

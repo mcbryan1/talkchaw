@@ -7,7 +7,7 @@ class ChatCard extends StatelessWidget {
   final Map<String, dynamic> chat;
   // Messages
 
-  ChatCard({
+  const ChatCard({
     Key? key,
     required this.chat,
   }) : super(key: key);

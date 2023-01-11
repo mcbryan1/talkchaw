@@ -259,7 +259,7 @@ class _SignupState extends State<Signup> {
                               decoration: TextDecoration.underline),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              nextScreen(context, const Login());
+                              nextScreenReplace(context, const Login());
                             },
                         ),
                       ],
